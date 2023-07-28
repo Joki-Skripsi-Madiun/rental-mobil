@@ -1,0 +1,11 @@
+__ci_last_regenerate|i:1683779345;_ci_previous_url|s:42:"http://localhost:8080/data-pemesan/edit/10";logged_in|s:1:"1";error|s:301:"<!-- DEBUG-VIEW START 1 SYSTEMPATH\Validation\Views\list.php -->
+	<div class="errors" role="alert">
+		<ul>
+					<li>Email Harus diisi</li>
+					<li>Jenis Kelamin Harus diisi</li>
+					<li>Username Harus diisi</li>
+				</ul>
+	</div>
+
+<!-- DEBUG-VIEW ENDED 1 SYSTEMPATH\Validation\Views\list.php -->
+";__ci_vars|a:3:{s:5:"error";s:3:"old";s:13:"_ci_old_input";s:3:"old";s:21:"_ci_validation_errors";s:3:"old";}_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:5:{s:2:"id";s:2:"10";s:8:"fotoLama";s:18:"default-avatar.jpg";s:8:"fullname";s:4:"mita";s:13:"jenis_kelamin";s:0:"";s:6:"alamat";s:5:"ngawi";}}_ci_validation_errors|a:3:{s:5:"email";s:17:"Email Harus diisi";s:13:"jenis_kelamin";s:25:"Jenis Kelamin Harus diisi";s:8:"username";s:20:"Username Harus diisi";}

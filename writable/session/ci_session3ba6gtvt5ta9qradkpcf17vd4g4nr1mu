@@ -1,0 +1,9 @@
+__ci_last_regenerate|i:1683821739;_ci_previous_url|s:42:"http://localhost:8080/data-pesanan/edit/20";logged_in|s:1:"1";error|s:232:"<!-- DEBUG-VIEW START 1 SYSTEMPATH\Validation\Views\list.php -->
+	<div class="errors" role="alert">
+		<ul>
+					<li>Jenis Bayar harus diisi</li>
+				</ul>
+	</div>
+
+<!-- DEBUG-VIEW ENDED 1 SYSTEMPATH\Validation\Views\list.php -->
+";__ci_vars|a:3:{s:5:"error";s:3:"old";s:13:"_ci_old_input";s:3:"old";s:21:"_ci_validation_errors";s:3:"old";}_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:9:{s:10:"id_pesanan";s:2:"20";s:8:"id_mobil";s:2:"11";s:6:"proses";s:1:"0";s:10:"id_pemesan";s:1:"1";s:13:"id_perjalanan";s:1:"5";s:11:"jenis_bayar";s:6:"Kredit";s:5:"harga";s:5:"30000";s:10:"tgl_pinjam";s:10:"2023-05-24";s:11:"tgl_kembali";s:10:"2023-05-10";}}_ci_validation_errors|a:1:{s:13:"id_jenisbayar";s:23:"Jenis Bayar harus diisi";}
