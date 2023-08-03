@@ -37,6 +37,7 @@
                     <?php endif; ?>
                     <?php if (user()->status == 1) { ?>
                         <form class="row g-3" action="/data-pesanan/save" method="post" enctype="multipart/form-data">
+                            <input name="proses" value="0" type="hidden" class="form-control" id="inputAddress" placeholder="Proses">
                             <div class="col-12">
                                 <label for="inputState" class="form-label">Nama Pemesan</label>
                                 <select name="id_pemesan" id="inputState" class="form-select">

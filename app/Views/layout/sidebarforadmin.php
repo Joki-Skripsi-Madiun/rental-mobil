@@ -83,26 +83,35 @@
             <i class="fas fa-fw fa-list-alt"></i>
             <span>Data Pesanan</span></a>
     </li>
-    <li class="nav-item <?= $active == 'pesanan' ? 'active' : '' ?>">
+    <li class="nav-item <?= $active == 'pengeluaran' ? 'active' : '' ?>">
         <a class="nav-link" href="/data-pengeluaran">
             <i class="fas fa-fw fa-list-alt"></i>
             <span>Data Pengeluaran</span></a>
     </li>
+
+    <div class="sidebar-heading">
+        LAPORAN
+    </div>
     <!-- Nav Item - Charts -->
     <li class="nav-item <?= $active == 'laporan' ? 'active' : '' ?>">
         <a class="nav-link" href="/laporan-pesanan">
             <i class="fas fa-fw fa-list-alt"></i>
             <span>Laporan Pesanan</span></a>
     </li>
-    <!-- <li class="nav-item <?= $active == 'laporan' ? 'active' : '' ?>">
-        <a class="nav-link" href="/laporan-pesanan">
+    <li class="nav-item <?= $active == 'unit' ? 'active' : '' ?>">
+        <a class="nav-link" href="/laporan-unit">
             <i class="fas fa-fw fa-list-alt"></i>
             <span>Laporan Per Unit</span></a>
     </li>
-    <li class="nav-item <?= $active == 'laporan' ? 'active' : '' ?>">
-        <a class="nav-link" href="/laporan-pesanan">
+    <li class="nav-item <?= $active == 'laporan-pengeluaran' ? 'active' : '' ?>">
+        <a class="nav-link" href="/laporan-pengeluaran">
             <i class="fas fa-fw fa-list-alt"></i>
-            <span>Laporan Keuntungan</span></a> -->
+            <span>Laporan Pengeluaran</span></a>
+    </li>
+    <li class="nav-item <?= $active == 'laporan-keuntungan' ? 'active' : '' ?>">
+        <a class="nav-link" href="/laporan-keuntungan">
+            <i class="fas fa-fw fa-list-alt"></i>
+            <span>Laporan Keuntungan</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

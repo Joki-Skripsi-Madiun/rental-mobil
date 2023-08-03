@@ -4,7 +4,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Laporan Pesanan</h1>
+        <h1 class="h3 mb-0 text-gray-800">Laporan Unit</h1>
         <?php if (session()->getFlashdata('pesan')) : ?>
             <div class="alert alert-success" role="alert">
                 <?= session()->getFlashdata('pesan'); ?>
@@ -21,17 +21,17 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Laporan Pesanan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Laporan Unit</h6>
 
 
                 </div>
                 <!-- Card Body -->
                 <div class="card-body text-center">
-                    <h5>Laporan Bulanan Rental Mobil</h5>
-                    <p>Silahkan pilih bulan laporan rental mobil</p>
+                    <h5>Laporan Bulanan Unit Rental Mobil</h5>
+                    <p>Silahkan pilih bulan laporan unit rental mobil</p>
                     <br>
                     <div class="d-flex justify-content-center mb-5">
-                        <form action="/laporan-print" method="post">
+                        <form action="/laporan-unit/bulan" method="post">
                             <div class="row g-3 align-items-center">
                                 <div class="col-auto">
                                     <label for="inputPassword6" class="col-form-label">Pilih Bulan</label>
@@ -62,11 +62,11 @@
 
                     </div>
                     <hr>
-                    <h5>Laporan Tahunan Rental Mobil</h5>
-                    <p>Silahkan pilih tahun laporan rental mobil</p>
+                    <h5>Laporan Tahunan Unit Rental Mobil</h5>
+                    <p>Silahkan pilih tahun laporan unit rental mobil</p>
                     <br>
                     <div class="d-flex justify-content-center mb-5">
-                        <form action="/laporan-tahun" method="post">
+                        <form action="/laporan-unit/tahun" method="post">
                             <div class="row g-3 align-items-center">
                                 <div class="col-auto">
                                     <label for="inputPassword6" class="col-form-label">Pilih Tahun</label>
@@ -87,10 +87,13 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 <?= $this->endSection(); ?>
