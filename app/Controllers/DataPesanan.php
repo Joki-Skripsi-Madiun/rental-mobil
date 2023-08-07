@@ -464,7 +464,7 @@ class DataPesanan extends BaseController
         session();
         $groupModel = new GroupModel();
         $data = [
-            'active'  => 'laporan',
+            'active'  => 'unit',
             'role'  => $groupModel->getGroupsForUser(user()->id),
             // 'validation' => \Config\Services::validation()
         ];
@@ -502,7 +502,7 @@ class DataPesanan extends BaseController
             'bayar' => $bayar->getBayar(),
             'joinpesanan' => $pesanan,
             'sumharga' => $sumharga,
-            'active'  => 'laporan',
+            'active'  => 'unit',
             'role'  => $groupModel->getGroupsForUser(user()->id),
             // 'validation' => \Config\Services::validation()
         ];
@@ -548,7 +548,7 @@ class DataPesanan extends BaseController
             'bayar' => $bayar->getBayar(),
             'joinpesanan' => $pesanan,
             'sumharga' => $sumharga,
-            'active'  => 'laporan',
+            'active'  => 'laporan-unit',
             'role'  => $groupModel->getGroupsForUser(user()->id),
             // 'validation' => \Config\Services::validation()
         ];

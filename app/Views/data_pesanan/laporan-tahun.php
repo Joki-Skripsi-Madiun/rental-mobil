@@ -99,14 +99,6 @@
             </tbody>
         </table>
         <br>
-        <p>Rincian mobil yang telah digunakan :</p>
-        <?php
-        $no = 1;
-        foreach ($mobilAll as $rw) {
-            $row = "row" . $rw['id_mobil'];
-            echo "<div class='row'>" . $no++ . ". " . $$row . "</div>";
-        }
-        ?>
     </div>
     <script>
         window.print();

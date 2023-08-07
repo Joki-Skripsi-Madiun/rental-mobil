@@ -80,7 +80,7 @@
                                         <?php } ?>
 
                                     </select>
-                                    <input type="hidden" name="tahun" value="<?= date('Y'); ?>">
+
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary">Cari</button>
