@@ -300,5 +300,22 @@ class DataPesananModel extends Model
         $query = $this->db->table('pesanan')->update($data, array('id_pesanan' => $id_pesanan));
         return $query;
     }
+
+
+    public function PesananSumTahun($tahun)
+    {
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('pesanan');
+        $builder->selectSum('mobil.harga');
+        $builder->join('users', 'users.id = pesanan.id_pemesan');
+        $builder->join('mobil', 'mobil.id_mobil = pesanan.id_mobil');
+        $builder->join('perjalanan', 'perjalanan.id_perjalanan = pesanan.id_perjalanan');
+        $builder->join('jenis_bayar', 'jenis_bayar.id_jenisbayar = pesanan.id_jenisbayar');
+        $builder->where('proses', 2);
+        $builder->where('YEAR(pesanan.tgl_pinjam)', $tahun);
+        $query = $builder->get();
+        return $query->getRow()->harga;
+    }
     // ...
 }

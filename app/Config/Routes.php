@@ -76,6 +76,9 @@ $routes->delete('/data-pengeluaran/(:num)', 'DataPengeluaran::delete/$1', ['filt
 $routes->get('/data-pengeluaran/edit/(:num)', 'DataPengeluaran::edit/$1', ['filter' => 'auth']);
 $routes->post('/data-pengeluaran/update/(:num)', 'DataPengeluaran::update/$1', ['filter' => 'auth']);
 $routes->get('/data-pengeluaran/detail/(:num)', 'DataPengeluaran::detail/$1', ['filter' => 'auth']);
+$routes->get('/laporan-pengeluaran', 'DataPengeluaran::laporan', ['filter' => 'auth']);
+$routes->add('/laporan-pengeluaran/bulan', 'DataPengeluaran::laporanBulan', ['filter' => 'auth']);
+$routes->add('/laporan-pengeluaran/tahun', 'DataPengeluaran::laporanTahun', ['filter' => 'auth']);
 
 // Data Perjalanan 
 $routes->get('/data-perjalanan', 'DataPerjalanan::index', ['filter' => 'auth']);
@@ -98,7 +101,16 @@ $routes->post('/laporan-pesanan', 'DataPesanan::laporanPrint', ['filter' => 'aut
 $routes->post('/laporan-print', 'DataPesanan::laporanPrint', ['filter' => 'auth']);
 $routes->get('/laporan-print', 'DataPesanan::laporanPrint', ['filter' => 'auth']);
 $routes->add('/laporan-tahun', 'DataPesanan::laporanTahun', ['filter' => 'auth']);
+$routes->add('/laporan-unit/tahun', 'DataPesanan::laporanUnitTahun', ['filter' => 'auth']);
+$routes->add('/laporan-unit/bulan', 'DataPesanan::laporanUnitBulan', ['filter' => 'auth']);
+$routes->get('/laporan-unit', 'DataPesanan::laporanUnit', ['filter' => 'auth']);
 $routes->post('getBayar', 'DataPesanan::getBayar', ['filter' => 'auth']);
+
+
+//Keuntungan
+$routes->add('/laporan-keuntungan/tahun', 'DataPesanan::laporanKeuntunganTahun', ['filter' => 'auth']);
+$routes->add('/laporan-keuntungan/bulan', 'DataPesanan::laporanKeuntunganBulan', ['filter' => 'auth']);
+$routes->get('/laporan-keuntungan', 'DataPesanan::laporanKeuntungan', ['filter' => 'auth']);
 
 // Data Akun 
 $routes->get('/data-akun', 'DataAkun::index', ['filter' => 'auth']);

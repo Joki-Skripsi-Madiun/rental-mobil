@@ -101,6 +101,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('ul li').click(function() {
@@ -131,6 +132,7 @@
             });
         });
     </script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url(); ?>/assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?= base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

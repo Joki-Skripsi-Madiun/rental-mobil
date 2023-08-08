@@ -104,15 +104,46 @@ class DataPengeluaran extends BaseController
         session()->setFlashdata('pesan', 'Ubah Data Pengeluaran Berhasil');
         return redirect()->to('/data-pengeluaran');
     }
-    // public function update()
-    // {
-
-    //     $merk = $this->datamerkModel;
-    //     $id = $this->request->getPost('id');
-    //     $data = array(
-    //         'nama_merk'        => $this->request->getPost('nama_merk'),
-    //     );
-    //     $merk->updateMerk($data, $id);
-    //     return redirect()->to('/data-merk');
-    // }
+    public function laporan()
+    {
+        session();
+        $data = [
+            // 'session' => $session,
+            'pengeluaran' => $this->datapengeluaranModel->getPengeluaran(),
+            'active'  => 'laporan-pengeluaran',
+            'role' => $this->groups->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        return view('data_pengeluaran/laporan', $data);
+    }
+    public function laporanBulan()
+    {
+        session();
+        $tahun = $this->request->getVar('tahun');
+        $bulan = $this->request->getVar('bulan');
+        $data = [
+            // 'session' => $session,
+            'pengeluaran' => $this->datapengeluaranModel->where('MONTH(created_at)', $bulan)->where('YEAR(created_at)', $tahun)->findAll(),
+            'active'  => 'laporan-pengeluaran',
+            'bulan'  => $bulan,
+            'tahun'  => $tahun,
+            'role' => $this->groups->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        return view('data_pengeluaran/laporan-bulan', $data);
+    }
+    public function laporanTahun()
+    {
+        session();
+        $tahun = $this->request->getVar('tahun');
+        $data = [
+            // 'session' => $session,
+            'pengeluaran' => $this->datapengeluaranModel->where('YEAR(created_at)', $tahun)->findAll(),
+            'active'  => 'laporan-pengeluaran',
+            'tahun'  => $tahun,
+            'role' => $this->groups->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        return view('data_pengeluaran/laporan-tahun', $data);
+    }
 }

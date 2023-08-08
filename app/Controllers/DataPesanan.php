@@ -459,6 +459,201 @@ class DataPesanan extends BaseController
         return view('data_pesanan/laporan-tahun', $data);
     }
 
+    public function laporanUnit()
+    {
+        session();
+        $groupModel = new GroupModel();
+        $data = [
+            'active'  => 'unit',
+            'role'  => $groupModel->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+
+        return view('data_pesanan/laporan-unit', $data);
+    }
+
+    public function laporanUnitBulan()
+    {
+        session();
+        $bulan = $this->request->getVar('bulan');
+        $tahun = $this->request->getVar('tahun');
+        $groupModel = new GroupModel();
+        if (user()->status == 1) {
+            $pesanan = $this->datapesananModel->joinPesananLap($bulan, $tahun);
+        } elseif (user()->status == 2) {
+            $pesanan = $this->datapesananModel->joinPesananCust();
+        }
+        $mobil = $this->datamobilModel->getMobilStatus();
+        $mobilAll = $this->datamobilModel;
+        $pemesan = $this->datapemesanModel;
+        $perjalanan = $this->dataperjalananModel->where('id_perjalanan !=', 0);
+        $bayar = $this->databayarModel->where('id_jenisbayar !=', 0);
+        $sumharga = $this->datapesananModel->joinPesananLapSum($bulan, $tahun);
+        $data = [
+            // 'session' => $session,
+            // 'pesanan' => $pesanan->getPesanan(),
+            'mobil' => $mobil->getMobil(),
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'mobilAll' => $mobilAll->findAll(),
+            'joinmobil' => $this->datamobilModel->joinMobil(),
+            'pemesan' => $pemesan->where('id !=', 0)->getPemesan(),
+            'perjalanan' => $perjalanan->getPerjalanan(),
+            'bayar' => $bayar->getBayar(),
+            'joinpesanan' => $pesanan,
+            'sumharga' => $sumharga,
+            'active'  => 'unit',
+            'role'  => $groupModel->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        $no = 1;
+        foreach ($data['mobilAll'] as $row) {
+            $dataRow['no'] = $no++;
+            $dataRow['jumlah'] = $this->datapesananModel->hitungJumlahMobil($row['id_mobil'], 2, $bulan, $tahun);
+            $dataRow['merk'] = $this->datamerkModel->where('id_merk', $row['id_merk'])->findAll();
+            $dataRow['total'] = $this->datapesananModel->PesananMobilSum($row['id_mobil'], 2, $bulan, $tahun);
+            $dataRow['waktu'] = $this->datapesananModel->PesananHariSum($row['id_mobil'], 2, $bulan, $tahun);
+            $dataRow['row'] = $row;
+            $data['row' . $row['id_mobil']] = view('data_pesanan/row-table', $dataRow);
+        }
+        return view('data_pesanan/laporan-unit-bulan', $data);
+    }
+
+    public function laporanUnitTahun()
+    {
+        session();
+
+        $tahun = $this->request->getVar('tahun');
+        $groupModel = new GroupModel();
+        if (user()->status == 1) {
+            $pesanan = $this->datapesananModel->joinPesananLapTahun($tahun);
+        } elseif (user()->status == 2) {
+            $pesanan = $this->datapesananModel->joinPesananCust();
+        }
+        $mobil = $this->datamobilModel->getMobilStatus();
+        $mobilAll = $this->datamobilModel;
+        $pemesan = $this->datapemesanModel;
+        $perjalanan = $this->dataperjalananModel->where('id_perjalanan !=', 0);
+        $bayar = $this->databayarModel->where('id_jenisbayar !=', 0);
+        $sumharga = $this->datapesananModel->joinPesananLapSumTahun($tahun);
+        $data = [
+            // 'session' => $session,
+            // 'pesanan' => $pesanan->getPesanan(),
+            'mobil' => $mobil->getMobil(),
+            'tahun' => $tahun,
+            'mobilAll' => $mobilAll->findAll(),
+            'joinmobil' => $this->datamobilModel->joinMobil(),
+            'pemesan' => $pemesan->where('id !=', 0)->getPemesan(),
+            'perjalanan' => $perjalanan->getPerjalanan(),
+            'bayar' => $bayar->getBayar(),
+            'joinpesanan' => $pesanan,
+            'sumharga' => $sumharga,
+            'active'  => 'laporan-unit',
+            'role'  => $groupModel->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        $no = 1;
+        foreach ($data['mobilAll'] as $row) {
+            $dataRow['jumlah'] = $this->datapesananModel->hitungJumlahMobilTahun($row['id_mobil'], 2, $tahun);
+            $dataRow['merk'] = $this->datamerkModel->where('id_merk', $row['id_merk'])->findAll();
+            $dataRow['total'] = $this->datapesananModel->PesananMobilSumTahun($row['id_mobil'], 2, $tahun);
+            $dataRow['no'] = $no++;
+            $dataRow['waktu'] = $this->datapesananModel->PesananHariSumTahun($row['id_mobil'], 2, $tahun);
+            $dataRow['row'] = $row;
+            $data['row' . $row['id_mobil']] = view('data_pesanan/row-table', $dataRow);
+        }
+        return view('data_pesanan/laporan-unit-tahun', $data);
+    }
+
+
+    public function laporanKeuntungan()
+    {
+        session();
+        $groupModel = new GroupModel();
+        $data = [
+            'active'  => 'laporan-keuntungan',
+            'role'  => $groupModel->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+
+        return view('data_pesanan/laporan-keuntungan', $data);
+    }
+
+    public function laporanKeuntunganBulan()
+    {
+        session();
+        $bulan = $this->request->getVar('bulan');
+        $tahun = $this->request->getVar('tahun');
+        $groupModel = new GroupModel();
+        if (user()->status == 1) {
+            $pesanan = $this->datapesananModel->joinPesananLap($bulan, $tahun);
+        } elseif (user()->status == 2) {
+            $pesanan = $this->datapesananModel->joinPesananCust();
+        }
+        $mobil = $this->datamobilModel->getMobilStatus();
+        $mobilAll = $this->datamobilModel;
+        $pemesan = $this->datapemesanModel;
+        $perjalanan = $this->dataperjalananModel->where('id_perjalanan !=', 0);
+        $bayar = $this->databayarModel->where('id_jenisbayar !=', 0);
+        $sumharga = $this->datapesananModel->joinPesananLapSum($bulan, $tahun);
+        $data = [
+            // 'session' => $session,
+            // 'pesanan' => $pesanan->getPesanan(),
+            'mobil' => $mobil->getMobil(),
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'mobilAll' => $mobilAll->findAll(),
+            'joinmobil' => $this->datamobilModel->joinMobil(),
+            'pemesan' => $pemesan->where('id !=', 0)->getPemesan(),
+            'perjalanan' => $perjalanan->getPerjalanan(),
+            'bayar' => $bayar->getBayar(),
+            'pengeluaran' => $this->datapengeluaranModel->where('MONTH(created_at)', $bulan)->where('YEAR(created_at)', $tahun)->findAll(),
+            'joinpesanan' => $pesanan,
+            'sumharga' => $sumharga,
+            'active'  => 'laporan',
+            'role'  => $groupModel->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        return view('data_pesanan/laporan-keuntungan-bulan', $data);
+    }
+
+    public function laporanKeuntunganTahun()
+    {
+        session();
+
+        $tahun = $this->request->getVar('tahun');
+        $groupModel = new GroupModel();
+        if (user()->status == 1) {
+            $pesanan = $this->datapesananModel->joinPesananLapTahun($tahun);
+        } elseif (user()->status == 2) {
+            $pesanan = $this->datapesananModel->joinPesananCust();
+        }
+        $mobil = $this->datamobilModel->getMobilStatus();
+        $mobilAll = $this->datamobilModel;
+        $pemesan = $this->datapemesanModel;
+        $perjalanan = $this->dataperjalananModel->where('id_perjalanan !=', 0);
+        $bayar = $this->databayarModel->where('id_jenisbayar !=', 0);
+        $sumharga = $this->datapesananModel->joinPesananLapSumTahun($tahun);
+        $data = [
+            // 'session' => $session,
+            // 'pesanan' => $pesanan->getPesanan(),
+            'mobil' => $mobil->getMobil(),
+            'tahun' => $tahun,
+            'mobilAll' => $mobilAll->findAll(),
+            'joinmobil' => $this->datamobilModel->joinMobil(),
+            'pemesan' => $pemesan->where('id !=', 0)->getPemesan(),
+            'perjalanan' => $perjalanan->getPerjalanan(),
+            'bayar' => $bayar->getBayar(),
+            'joinpesanan' => $pesanan,
+            'pengeluaran' => $this->datapengeluaranModel->where('YEAR(created_at)', $tahun)->findAll(),
+            'sumharga' => $sumharga,
+            'active'  => 'laporan',
+            'role'  => $groupModel->getGroupsForUser(user()->id),
+            // 'validation' => \Config\Services::validation()
+        ];
+        return view('data_pesanan/laporan-keuntungan-tahun', $data);
+    }
+
     public function getBayar()
     {
         $id_mobil = $this->request->getPost('id_mobil');

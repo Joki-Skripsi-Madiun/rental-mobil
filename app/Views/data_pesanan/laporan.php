@@ -80,20 +80,16 @@
                                         <?php } ?>
 
                                     </select>
-                                    <input type="hidden" name="tahun" value="<?= date('Y'); ?>">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary">Cari</button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
 </div>
 <?= $this->endSection(); ?>

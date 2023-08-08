@@ -137,8 +137,8 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="merk" class="form-label">Harga</label>
-                                <input name="harga" value="<?= (old('harga')) ? old('harga') : $joinpesanan->getRow('harga'); ?>" type="text" class="form-control" id="inputAddress" placeholder="Harga">
+                                <label for="merk" class="form-label">Lama Sewa (Hari)</label>
+                                <input name="hari" value="<?= (old('hari')) ? old('hari') : $joinpesanan->getRow('hari'); ?>" type="number" class="form-control" id="hari" placeholder="Hari">
                             </div>
                             <div class="col-md-6">
                                 <label for="merk" class="form-label">Tanggal Pinjam</label>
@@ -160,27 +160,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        // Menggunakan event onchange untuk mendapatkan total harga secara otomatis saat pilihan berubah
-        $('#mobil, #promosi').on('change', function() {
-            var id_service = $('#service').val();
-            var id_promosi = $('#promosi').val();
-
-            // Mengirim permintaan AJAX ke server
-            $.ajax({
-                url: '/getBayar',
-                type: 'POST',
-                data: {
-                    id_service: id_service,
-                    id_promosi: id_promosi
-                },
-                success: function(response) {
-                    $('#total-price').text(response.total_price);
-                }
-            });
-        });
-    });
-</script>
 <?= $this->endSection(); ?>
